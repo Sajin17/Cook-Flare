@@ -1,0 +1,41 @@
+{
+    "recipes": [
+      {
+        "id": "1",
+        "title": "Veggie Stew",
+        "ingredients": [
+          "1 Carrot",
+          "1 Leek",
+          "200g Tofu",
+          "300ml Veg stock"
+        ],
+        "method": "1. Pre-heat the oven to 200C/3C/gas 2. Place the carrot, leek and tofu in a large bowl. Add the stock and mix well. 3. Add the rest of the ingredients and mix well. 4. Place the mixture in a large bowl and cover with a lid. 5. Place the lid on the oven and cook for 40 minutes. 6. Serve with a slaw of your choice",
+        "cookingTime": "45 minutes"
+      },
+      {
+        "id": "2",
+        "title": "Veggie Pizza",
+        "ingredients": [
+          "1 Base",
+          "Tomata pasata",
+          "1 Green pepper",
+          "100g Mushrooms"
+        ],
+        "method": "1. Pre-heat the oven to 200C/3C/gas 2. Add the pasata, green pepper and mushrooms to the base. Place the lid on the oven and cook for 30 minutes. 3. Serve with a slaw of your choice",
+        "cookingTime": "35 minutes"
+      },
+      {
+        "id": "3",
+        "title": "Hamburger",
+        "ingredients": [
+          "1 large egg",
+          "½ teaspoon salt",
+          "½ teaspoon ground black pepper",
+          "1 pound ground beef",
+          "½ cup fine dry bread crumbs"
+        ],
+        "method": "1. Preheat an outdoor grill for high heat and lightly oil grate. 2. Whisk together egg, salt, and pepper in a medium bowl. 3. Add ground beef and bread crumbs and mix with your hands or a fork until well blended. 4. Form into four 3/4-inch-thick patties. 5. Place patties on the preheated grill. Cover and cook 6 to 8 minutes per side, or to desired doneness. An instant-read thermometer inserted into the center should read at least 160 degrees F (70 degrees C). 6. Serve hot and enjoy!",
+        "cookingTime": "25 minutes"
+      }
+    ]
+  }
