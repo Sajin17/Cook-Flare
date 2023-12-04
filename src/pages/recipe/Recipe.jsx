@@ -1,31 +1,43 @@
-import {useParams} from 'react-router-dom';
-import { useFetch } from '../../hooks/useFetch';
+import './Recipe.css'
 import useTheme from '../../hooks/useTheme';
-import './Recipe.css';
+import { useDocument } from '../../hooks/useDocument';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useFirestore } from '../../hooks/useFireStore';
 
 const Recipe = () => {
-    const { id } = useParams();
-    const url = 'http://localhost:3000/recipes/' + id;
-    const {error, isPending, data: recipe } = useFetch(url);
-    const { mode } =useTheme()
+    const navigate = useNavigate()
+    const { id } = useParams()
+    const { document, error } = useDocument('recipes', id)
+    const { deleteDocument } = useFirestore('recipes')
+    const { mode } =useTheme() 
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        deleteDocument(document.id)
+        navigate('/')
+      }
 
     return ( 
-    <div className={`recipe ${mode}`}>
+    <>  
+     <div className={`recipe ${mode}`}>
         {error && <p className='error'>{error}</p>}
-        {isPending && <p className='loading'>Loading...</p>}
-        {recipe && (
+        {document && (
         <div>
-        <h2 className='page-title'>{recipe.title}</h2>
-        <p>Takes {recipe.cookingTime} to cook</p>
+        <h2 className='page-title'>{document.title}</h2>
+        <p>Takes {document.cookingTime} to cook</p>
         <ul>
-        {recipe.ingredients.map(ing =>(
+        {document.ingredients && document.ingredients.map(ing =>(
         <li key={ing}>{ing}</li>
         ))}
         </ul>
-        <p className='method'>{recipe.method}</p>
+        <p className='method'>{document.method}</p>
         </div>
-        )}
-    </div>
+        )}    
+     </div>
+     <div className='btn-container'> 
+      <button className="btn" onClick={handleSubmit}>Delete recipe</button>    
+     </div>
+    </>  
      );
 }
  

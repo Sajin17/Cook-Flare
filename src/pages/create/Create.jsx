@@ -1,7 +1,7 @@
-import { useState, useRef, useEffect } from 'react';
 import './Create.css';
-import { useFetch } from '../../hooks/useFetch';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
+import { useFirestore } from '../../hooks/useFireStore';
 
 const Create = () => {
    const [title, setTitle] = useState('')
@@ -12,11 +12,22 @@ const Create = () => {
    const ingredientInput = useRef(null)
    const navigate = useNavigate()
 
-   const {data, postData, error} = useFetch("http://localhost:3000/recipes", "POST")
+   const { addDocument, response } = useFirestore('recipes')
 
-   const handleSubmit = (e) => {
+   const handleSubmit = async (e) => {
     e.preventDefault();
-    postData({title, ingredients, method, cookingTime: cookingTime.concat(" minutes ")})
+    const recipes = {
+      title,
+      ingredients,
+      method,
+      cookingTime: cookingTime.concat(" minutes ")
+    }
+
+    await addDocument(recipes)
+
+    if (!response.error){
+      navigate('/')
+    }
    }
    
    const handleAdd = (e) => {
@@ -32,12 +43,6 @@ const Create = () => {
     setNewIngredient('')
     ingredientInput.current.focus()
    }
-
-   useEffect(() => {
-    if (data){
-     navigate('/')
-    }
-   }, [data, navigate])
 
 return ( 
     <div className='create'>
